@@ -53,6 +53,7 @@ module.exports = router;
 
 
 // Add this route to handle the main homepage link
+const app = express();
 app.get('/', (req, res) => {
     res.redirect('/listings');
 });
