@@ -50,3 +50,9 @@ router
 router.get("/:id/edit",isLoggedIn,isOwner, wrapAsync(listingController.renderEditListing));
 
 module.exports = router;
+
+
+// Add this route to handle the main homepage link
+app.get('/', (req, res) => {
+    res.redirect('/listings');
+});
