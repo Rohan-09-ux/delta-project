@@ -1,0 +1,81 @@
+<% if(error && error.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible fade show shadow-lg mb-4" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <strong>Validation Failed:</strong> <%= error[0] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+<% } %>
+
+<% layout('layouts/boilerplate') %>
+<div class="row mt-3">
+    <div class="col-8 offset-2">
+        <h3>Create a New Listing</h3>
+        <form method="post" action="/listings" novalidate class="needs-validation" id="newListingForm" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input name="listing[title]" placeholder="Enter title (3+ chars)" type="text" 
+                       class="form-control" required minlength="3" maxlength="50">
+                <div class="valid-feedback">Title looks good!</div>
+                <div class="invalid-feedback">Title must be 3-50 chars (letters/numbers/spaces only)</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea name="listing[description]" class="form-control" 
+                          placeholder="Enter description (10+ chars)" required minlength="10" rows="4"></textarea>
+                <div class="valid-feedback">Description looks good!</div>
+                <div class="invalid-feedback">Description must be at least 10 characters</div>
+            </div>
+            
+            <!-- <div class="mb-3">
+                <label for="image" class="form-label">Image Link</label>
+                <input name="listing[image][url]" type="url" placeholder="https://example.com/image.jpg" 
+                       class="form-control" required>
+                <div class="valid-feedback">Image URL looks good!</div>
+                <div class="invalid-feedback">Please provide a valid image URL</div>
+            </div> -->
+
+
+             <div class="mb-3">
+                <label for="image" class="form-label">Upload Listing Image</label>
+                <input name="listing[image][url]" type="file"
+                       class="form-control" required>
+                <div class="valid-feedback">Image URL looks good!</div>
+                <div class="invalid-feedback">Please provide a valid image URL</div>
+            </div>
+            
+            <div class="row">
+                <div class="mb-3 col-md-4">
+                    <label for="price" class="form-label">Price</label>
+                    <input name="listing[price]" placeholder="99.99" type="number" step="0.01" min="1" max="1000000"
+                           class="form-control" required>
+                    <div class="valid-feedback">Price looks good!</div>
+                    <div class="invalid-feedback">Price must be between $1 - $1,000,000</div>
+                </div>
+                <div class="mb-3 col-md-8">
+                    <label for="country" class="form-label">Country</label>
+                    <input name="listing[country]" placeholder="Enter country" type="text" minlength="2"
+                           class="form-control" required>
+                    <div class="valid-feedback">Country looks good!</div>
+                    <div class="invalid-feedback">Country must be at least 2 characters</div>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input name="listing[location]" placeholder="Enter location" type="text" minlength="2"
+                       class="form-control" required>
+                <div class="valid-feedback">Location looks good!</div>
+                <div class="invalid-feedback">Location must be at least 2 characters</div>
+            </div>
+            
+            <div class="d-flex gap-3">
+                <button class="btn btn-success btn-lg" type="submit">➕ Add Listing</button>
+                <a href="/listings" class="btn btn-secondary btn-lg">← Cancel</a>
+            </div>
+        </form>
+        <a href="/listings" class="btn btn-outline-dark mt-3">All Listings</a>
+    </div>
+</div>
+
+<!-- <script src="/js/validateForm.js"></script> -->

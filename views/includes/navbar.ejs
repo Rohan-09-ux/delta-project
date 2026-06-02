@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAllmarkup">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAllmarkup">
+                <ul class="navbar-nav ms">
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" href="/">Home</a> -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listings">Explore </a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="navbar-nav">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2 search-input" type="search" placeholder="Search Destinations" />
+                    <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+                </form>
+            </div>
+             <div class="collapse navbar-collapse" id="navbarNavAllmarkup">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/listings/new">Airbnb your home</a>
+                    </li>
+                    <% if(!currentUser) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup"><b>Sign up</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login"><b>Login</b></a>
+                    </li>
+                    <% } %> <% if(currentUser) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><b>Logout</b></a>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

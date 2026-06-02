@@ -1,0 +1,76 @@
+<% if(error && error.length > 0) { %>
+    <div class="alert alert-danger alert-dismissible fade show shadow-lg mb-4" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        <strong>Validation Failed:</strong> <%= error[0] %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+<% } %>
+
+<% layout('layouts/boilerplate') %>
+<div class="row mt-4">
+    <div class="col-8 offset-2">
+        <h1>Edit <%= listing.title %></h1>
+        <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input class="form-control" name="listing[title]" value="<%= listing.title %>" 
+                       required minlength="3" maxlength="50">
+                <div class="valid-feedback">Title looks good!</div>
+                <div class="invalid-feedback">Title must be 3-50 chars (letters/numbers/spaces only)</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" name="listing[description]" rows="5" 
+                          required minlength="10"><%= listing.description %></textarea>
+                <div class="valid-feedback">Description looks good!</div>
+                <div class="invalid-feedback">Description must be at least 10 characters</div>
+            </div>
+
+            <div class="mb-3">
+                Orignal Listing Image<br>
+              <img src="<%=  originalImageUrl%>"/> 
+              
+            </div>
+            
+            <div class="mb-3">
+                <label for="image" class="form-label">Upload New Image </label>
+                <input class="form-control" name="listing[image]" type="file" >
+              
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input class="form-control" name="listing[price]" value="<%= listing.price %>" 
+                           type="number" step="0.01" min="1" max="1000000" required>
+                    <div class="valid-feedback">Price looks good!</div>
+                    <div class="invalid-feedback">Price must be between $1 - $1,000,000</div>
+                </div>
+                <div class="col-md-8 mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input class="form-control" name="listing[country]" value="<%= listing.country %>" 
+                           required minlength="2">
+                    <div class="valid-feedback">Country looks good!</div>
+                    <div class="invalid-feedback">Country must be at least 2 characters</div>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input class="form-control" name="listing[location]" value="<%= listing.location %>" 
+                       required minlength="2">
+                <div class="valid-feedback">Location looks good!</div>
+                <div class="invalid-feedback">Location must be at least 2 characters</div>
+            </div>
+            
+            <div class="d-flex gap-3">
+                <button class="btn btn-warning" type="submit">💾 Update Listing</button>
+                <a href="/listings/<%= listing._id %>" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+        <a href="/listings" class="btn btn-dark mt-3">All Listings</a>
+    </div>
+</div>
+
+<!-- <script src="/js/validateForm.js"></script> -->
